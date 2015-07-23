@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C180FCE4FA11A1C9304F5B9B /* libPods-ClassBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7131911664033D433D982B /* libPods-ClassBook.a */; };
 		DE49BFD61B618D280025F0AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE49BFD51B618D280025F0AA /* main.m */; };
 		DE49BFD91B618D280025F0AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE49BFD81B618D280025F0AA /* AppDelegate.m */; };
 		DE49BFDC1B618D280025F0AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE49BFDB1B618D280025F0AA /* ViewController.m */; };
@@ -27,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B7131911664033D433D982B /* libPods-ClassBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ClassBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C612D44829A3CF7D78428CF /* Pods-ClassBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClassBook/Pods-ClassBook.debug.xcconfig"; sourceTree = "<group>"; };
+		C345F77E91C31ADDA41F0AE1 /* Pods-ClassBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClassBook/Pods-ClassBook.release.xcconfig"; sourceTree = "<group>"; };
 		DE49BFD01B618D280025F0AA /* ClassBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE49BFD41B618D280025F0AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE49BFD51B618D280025F0AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C180FCE4FA11A1C9304F5B9B /* libPods-ClassBook.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +65,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		351285EF2A4BD92074EECB13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B7131911664033D433D982B /* libPods-ClassBook.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D915F18164716A0224979E63 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C612D44829A3CF7D78428CF /* Pods-ClassBook.debug.xcconfig */,
+				C345F77E91C31ADDA41F0AE1 /* Pods-ClassBook.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DE49BFC71B618D280025F0AA = {
 			isa = PBXGroup;
 			children = (
 				DE49BFD21B618D280025F0AA /* ClassBook */,
 				DE49BFEC1B618D280025F0AA /* ClassBookTests */,
 				DE49BFD11B618D280025F0AA /* Products */,
+				D915F18164716A0224979E63 /* Pods */,
+				351285EF2A4BD92074EECB13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,9 +150,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE49BFF31B618D280025F0AA /* Build configuration list for PBXNativeTarget "ClassBook" */;
 			buildPhases = (
+				47B587AF54B8A65C858D2BC9 /* Check Pods Manifest.lock */,
 				DE49BFCC1B618D280025F0AA /* Sources */,
 				DE49BFCD1B618D280025F0AA /* Frameworks */,
 				DE49BFCE1B618D280025F0AA /* Resources */,
+				293DACB044B97EFDF531CE0E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,6 +239,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		293DACB044B97EFDF531CE0E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ClassBook/Pods-ClassBook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47B587AF54B8A65C858D2BC9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DE49BFCC1B618D280025F0AA /* Sources */ = {
@@ -347,6 +406,7 @@
 		};
 		DE49BFF41B618D280025F0AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C612D44829A3CF7D78428CF /* Pods-ClassBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ClassBook/Info.plist;
@@ -357,6 +417,7 @@
 		};
 		DE49BFF51B618D280025F0AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C345F77E91C31ADDA41F0AE1 /* Pods-ClassBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ClassBook/Info.plist;
@@ -418,6 +479,7 @@
 				DE49BFF51B618D280025F0AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DE49BFF61B618D280025F0AA /* Build configuration list for PBXNativeTarget "ClassBookTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +488,7 @@
 				DE49BFF81B618D280025F0AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
