@@ -9,9 +9,10 @@
 #import "ViewController.h"
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "SVProgressHUD.h"
+#import "PeopleTableViewController.h"
 
 @interface ViewController ()
-
+@property (nonatomic, retain) PeopleTableViewController *peopleTableView;
 @end
 
 @implementation ViewController
@@ -59,14 +60,41 @@
              ];
         }
     }else
+    {  
+        self.peopleTableView = [self.storyboard instantiateViewControllerWithIdentifier:@"People"];
+        
+        //Switch view controllers
+        [UIView beginAnimations:@"View Flip" context:NULL];
+        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        if(!self.peopleTableView.view.superview)
+        {
+            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+            self.peopleTableView.view.frame = self.view.frame;
+            //[self switchViewFromViewController:self. toViewController:self.peopleTableView];
+            
+           
+        }
+        [UIView commitAnimations];
+
+    }
+}
+
+
+- (void) switchViewFromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
+{
+    if(fromVC != nil)
     {
-       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Your device cannot authenticate using TouchId."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"LOL!"
-                                              otherButtonTitles:nil];
-        [alert show];
-        /* [SVProgressHUD showErrorWithStatus:@"Your device cannot authenticate using TouchId."];*/
+        [fromVC  willMoveToParentViewController:nil];
+        [fromVC.view removeFromSuperview];
+        [fromVC removeFromParentViewController];
+    }
+    
+    if(toVC != nil)
+    {
+        [self addChildViewController:toVC];
+        [self.view insertSubview:toVC.view atIndex:0];
+        [toVC didMoveToParentViewController:self];
     }
 }
 @end
