@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import <LocalAuthentication/LocalAuthentication.h>
+#import "SVProgressHUD.h"
 
 @interface ViewController ()
 
@@ -24,4 +26,47 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Button Press
+-(IBAction)authenticationButtonTapped:(id)sender
+{
+    LAContext *authContext = [[LAContext alloc] init];
+    NSError *error = nil;
+    
+    if([authContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error])
+    {
+        if([authContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error])
+        {
+            [authContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                        localizedReason:@"Are you the device owner?"
+                                  reply:^(BOOL success, NSError *error)
+                                    {
+                                        if(error)
+                                        {
+                                            [SVProgressHUD showErrorWithStatus:@"There was a problem"];
+                                            return;
+                                        }
+                                        
+                                        if(success)
+                                        {
+                                            [SVProgressHUD showSuccessWithStatus:@"You are the owner!"];
+                                        }else
+                                        {
+                                            [SVProgressHUD showErrorWithStatus:@"You are not the owner!"];
+                                        }
+                                    }
+             
+             ];
+        }
+    }else
+    {
+       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Your device cannot authenticate using TouchId."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"LOL!"
+                                              otherButtonTitles:nil];
+        [alert show];
+        /* [SVProgressHUD showErrorWithStatus:@"Your device cannot authenticate using TouchId."];*/
+    }
+}
 @end
