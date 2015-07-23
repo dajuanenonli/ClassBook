@@ -15,6 +15,8 @@
 		DE49BFE11B618D280025F0AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE49BFE01B618D280025F0AA /* Images.xcassets */; };
 		DE49BFE41B618D280025F0AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE49BFE21B618D280025F0AA /* LaunchScreen.xib */; };
 		DE49BFF01B618D280025F0AA /* ClassBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE49BFEF1B618D280025F0AA /* ClassBookTests.m */; };
+		DE6B0A451B619A6000F16E83 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A441B619A6000F16E83 /* Person.m */; };
+		DE6B0A481B619D0900F16E83 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,10 @@
 		DE49BFE91B618D280025F0AA /* ClassBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClassBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE49BFEE1B618D280025F0AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE49BFEF1B618D280025F0AA /* ClassBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassBookTests.m; sourceTree = "<group>"; };
+		DE6B0A431B619A6000F16E83 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		DE6B0A441B619A6000F16E83 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		DE6B0A461B619D0900F16E83 /* PeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleTableViewController.h; sourceTree = "<group>"; };
+		DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,10 @@
 				DE49BFE01B618D280025F0AA /* Images.xcassets */,
 				DE49BFE21B618D280025F0AA /* LaunchScreen.xib */,
 				DE49BFD31B618D280025F0AA /* Supporting Files */,
+				DE6B0A431B619A6000F16E83 /* Person.h */,
+				DE6B0A441B619A6000F16E83 /* Person.m */,
+				DE6B0A461B619D0900F16E83 /* PeopleTableViewController.h */,
+				DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */,
 			);
 			path = ClassBook;
 			sourceTree = "<group>";
@@ -278,8 +288,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE6B0A481B619D0900F16E83 /* PeopleTableViewController.m in Sources */,
 				DE49BFDC1B618D280025F0AA /* ViewController.m in Sources */,
 				DE49BFD91B618D280025F0AA /* AppDelegate.m in Sources */,
+				DE6B0A451B619A6000F16E83 /* Person.m in Sources */,
 				DE49BFD61B618D280025F0AA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
