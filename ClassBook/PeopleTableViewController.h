@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PeopleTableViewController.h
 //  ClassBook
 //
 //  Created by Student on 7/23/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-- (IBAction)authenticationButtonTapped:(id)sender;
+@interface PeopleTableViewController : UITableViewController
 
 @end
-
