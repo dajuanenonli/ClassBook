@@ -18,6 +18,8 @@
 		DE6B0A451B619A6000F16E83 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A441B619A6000F16E83 /* Person.m */; };
 		DE6B0A481B619D0900F16E83 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */; };
 		DE6B0A4B1B61AEFA00F16E83 /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A4A1B61AEFA00F16E83 /* PersonDetailViewController.m */; };
+		DE77FB8F1B62A29500BD2D63 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE0E69B1B62A0B800AB0332 /* DataManager.m */; };
+		DE77FB911B62A30500BD2D63 /* People.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE77FB901B62A30500BD2D63 /* People.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleTableViewController.m; sourceTree = "<group>"; };
 		DE6B0A491B61AEFA00F16E83 /* PersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailViewController.h; sourceTree = "<group>"; };
 		DE6B0A4A1B61AEFA00F16E83 /* PersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailViewController.m; sourceTree = "<group>"; };
+		DE77FB901B62A30500BD2D63 /* People.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = People.plist; sourceTree = "<group>"; };
+		DEE0E69A1B62A0B800AB0332 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		DEE0E69B1B62A0B800AB0332 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +133,8 @@
 				DE6B0A4A1B61AEFA00F16E83 /* PersonDetailViewController.m */,
 				DE6B0A461B619D0900F16E83 /* PeopleTableViewController.h */,
 				DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */,
+				DEE0E69A1B62A0B800AB0332 /* DataManager.h */,
+				DEE0E69B1B62A0B800AB0332 /* DataManager.m */,
 			);
 			path = ClassBook;
 			sourceTree = "<group>";
@@ -135,8 +142,9 @@
 		DE49BFD31B618D280025F0AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DE49BFD41B618D280025F0AA /* Info.plist */,
 				DE49BFD51B618D280025F0AA /* main.m */,
+				DE49BFD41B618D280025F0AA /* Info.plist */,
+				DE77FB901B62A30500BD2D63 /* People.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -243,6 +251,7 @@
 				DE49BFDF1B618D280025F0AA /* Main.storyboard in Resources */,
 				DE49BFE41B618D280025F0AA /* LaunchScreen.xib in Resources */,
 				DE49BFE11B618D280025F0AA /* Images.xcassets in Resources */,
+				DE77FB911B62A30500BD2D63 /* People.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE77FB8F1B62A29500BD2D63 /* DataManager.m in Sources */,
 				DE6B0A4B1B61AEFA00F16E83 /* PersonDetailViewController.m in Sources */,
 				DE6B0A481B619D0900F16E83 /* PeopleTableViewController.m in Sources */,
 				DE49BFDC1B618D280025F0AA /* ViewController.m in Sources */,

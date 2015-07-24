@@ -9,10 +9,11 @@
 #import "PeopleTableViewController.h"
 #import "Person.h"
 #import "PersonDetailViewController.h"
+#import "DataManager.h"
 
 @interface PeopleTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *people;
+@property (nonatomic, strong) NSArray *people;
 
 @end
 
@@ -33,8 +34,7 @@
                                                  name:@"Person Selected"
                                                object:nil];
     
-    self.people = [[NSMutableArray alloc] init];
-    [self populatePeople];
+    self.people = [[[DataManager alloc] init] fetchPeopleFromPlist];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +68,7 @@
                 reuseIdentifier:SimpleTableIdentifier];
         
     }
+    
     Person *person = [self.people objectAtIndex:indexPath.row];
     cell.textLabel.text = [person.firstName stringByAppendingString:[@" " stringByAppendingString:person.lastName]];
     return cell;
@@ -75,7 +76,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     Person *selectedPerson = [self.people objectAtIndex:indexPath.row];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Person Selected"
                                                         object:selectedPerson];
@@ -120,23 +120,6 @@
 
 - (void) loadDetailpersonView: (NSNotification *) notification
 {
-    //PersonDetailViewController *personDVC = [[PersonDetailViewController alloc] init];
-    //personDVC.selectedperson = notification.object;
-    
-    /*
-    [UIView beginAnimations:@"View Flip" context:NULL];
-    [UIView setAnimationDuration:0.4];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    
-    [self  willMoveToParentViewController:nil];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
-    
-    [self addChildViewController:personDVC];
-    [self.view insertSubview:personDVC.view atIndex:0];
-    [personDVC didMoveToParentViewController:self];
-     */
-    
     PersonDetailViewController *controllerobj = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonDetail"];
     controllerobj.selectedperson = notification.object;
     [self.navigationController pushViewController:controllerobj animated:YES];
@@ -163,38 +146,4 @@
     }
 
 }
-
-
--(void) populatePeople
-{
-    Person *myPerson = [[Person alloc] init];
-    myPerson.firstName = @"Homer";
-    myPerson.lastName = @"Simpson";
-    myPerson.address = @"123 Main St";
-    myPerson.city = @"Springfield";
-    myPerson.state = @"CA";
-    myPerson.zip = @"90064";
-    myPerson.mobile = @"818-111-1111";
-    [self.people addObject:myPerson];
-    
-    Person *myPerson1 = [[Person alloc] init];
-    myPerson1.firstName = @"Margie";
-    myPerson1.lastName = @"Simpson";
-    myPerson1.address = @"123 Main St";
-    myPerson1.city = @"Springfield";
-    myPerson1.state = @"CA";
-    myPerson1.zip = @"90064";
-    myPerson1.mobile = @"818-111-1111";
-    [self.people addObject:myPerson1];
-    
-    Person *myPerson2 = [[Person alloc] init];
-    myPerson2.firstName = @"Bart";
-    myPerson2.lastName = @"Simpson";
-    myPerson2.address = @"123 Main St";
-    myPerson2.city = @"Springfield";
-    myPerson2.state = @"CA";
-    myPerson2.zip = @"90064";
-    myPerson2.mobile = @"818-111-1111";
-    [self.people addObject:myPerson2];}
-
 @end
