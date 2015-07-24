@@ -33,8 +33,8 @@
                                              selector:@selector(loadDetailpersonView:)
                                                  name:@"Person Selected"
                                                object:nil];
-    
-    self.people = [[[DataManager alloc] init] fetchPeopleFromPlist];
+        
+    self.people = [[DataManager sharedInstance] fetchPeopleFromPlist];
 }
 
 - (void)didReceiveMemoryWarning {

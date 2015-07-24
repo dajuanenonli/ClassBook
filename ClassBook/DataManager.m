@@ -8,13 +8,17 @@
 
 #import "DataManager.h"
 #import "Person.h"
+#import "AFNetworking.h"
+
+@interface DataManager()
+@property (nonatomic, strong) NSArray* peopleList;
+@end
 
 #define kFileName @"/people.Plist"
 
 @implementation DataManager
 
 static DataManager *SINGLETON = nil;
-
 static bool isFirstAccess = YES;
 
 #pragma mark - Public Method
@@ -57,7 +61,7 @@ static bool isFirstAccess = YES;
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath])
     {
-    //    [self parsePlist];
+        //[self parsePlist];
     //}else
     //{
         //[[NSNotificationCenter defaultCenter] addObserver:self
@@ -90,7 +94,7 @@ static bool isFirstAccess = YES;
 
 - (void)createPlist
 {
-    NSDictionary *peopleDictionary1 = @{
+    /*NSDictionary *peopleDictionary1 = @{
                                        @"firstName": @"Homer",
                                        @"lastname" : @"Simpson",
                                        @"address"  : @"123 Main St",
@@ -120,8 +124,9 @@ static bool isFirstAccess = YES;
                                        @"mobile"   : @"818-111-1111"
                                        };
      
-         NSArray *peopleArray = [[NSMutableArray alloc] initWithArray: @[peopleDictionary1, peopleDictionary2, peopleDictionary3]];
-  
+     NSArray *peopleArray = [[NSMutableArray alloc] initWithArray: @[peopleDictionary1, peopleDictionary2, peopleDictionary3]];
+     */
+    [self getPeople];
     
     
    /* NSMutableArray *people = [[NSMutableArray alloc] init];
@@ -158,19 +163,37 @@ static bool isFirstAccess = YES;
    
     NSArray *peopleArray = [[NSMutableArray alloc] initWithArray: @[myPerson, myPerson1, myPerson2]];
     */
-    [peopleArray writeToFile:[self dataFilePath] atomically:YES];
+    
 }
+
+- (void)writeToPlist:(id)data
+{
+    NSMutableArray *peopleArray = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *person in data) {
+        NSMutableDictionary *tempDictionary = [[NSMutableDictionary alloc]initWithDictionary:person];
+        [peopleArray addObject:tempDictionary];
+    }
+    
+    [peopleArray writeToFile:[self dataFilePath] atomically:YES];
+    //[(NSArray *)data writeToFile:[self dataFilePath] atomically:YES];
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Build Plist"
+                                                        object:nil];
+  
+  }
 
 -(Person *)parseData:(NSDictionary *) dict
 {
     Person *parsedData = [Person new];
-    parsedData.address = [dict valueForKey:@"address"];
-    parsedData.firstName = [dict valueForKey:@"firstName"];
-    parsedData.lastName = [dict valueForKey:@"lastname"];
-    parsedData.city = [dict valueForKey:@"city"];
-    parsedData.state = [dict valueForKey:@"state"];
-    parsedData.mobile = [dict valueForKey:@"mobile"];
-    parsedData.zip = [dict valueForKey:@"zip"];
+    parsedData.address = [dict valueForKey:@"Address"];
+    parsedData.firstName = [dict valueForKey:@"FirstName"];
+    parsedData.lastName = [dict valueForKey:@"Lastname"];
+    parsedData.city = [dict valueForKey:@"City"];
+    parsedData.state = [dict valueForKey:@"State"];
+    parsedData.mobile = [dict valueForKey:@"Mobile"];
+    parsedData.zip = [dict valueForKey:@"ZipCode"];
     return parsedData;
 }
 
@@ -213,5 +236,60 @@ static bool isFirstAccess = YES;
     return self;
 }
 
+#pragma mark - Webservice calls
+-(void) getPeople
+{
+    NSURL *url = [NSURL URLWithString:@"https://qa.ffemobile.com/iostrainingapi/api/person/getlist"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+       //NSError *e = nil;
+        //NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: responseObject options: NSJSONReadingMutableContainers error: &e];
+        
+        
+        // 3
+        //self.peopleList = [[NSArray alloc] initWithArray:responseObject];
+        [self writeToPlist:responseObject];
+        
+        //NSDictionary *currentData = [[data objectForKey:@"current_condition"] objectAtIndex:0];
+        
+        //self.cloudCover = [currentCondition[@"cloudCover"] intValue];
+        
+        //self.currentCondition = [[CurrentCondition alloc] init];
+        
+        /*for (int i=0; i < currentData.count; i++) {
+         
+         }*/
+        
+        //NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        //numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        
+        
+        
+        //self.currentCondition.cloudCover = [NSNumber numberWithInteger:(int)[self extractValue:[currentData valueForKey:@"cloudcover"]]];
+        
+        //self.title = @"JSON Retrieved";
+        //[self.tableView reloadData];
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        //return nil;
+        // 4
+        /*UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+         message:[error localizedDescription]
+         delegate:nil
+         cancelButtonTitle:@"Ok"
+         otherButtonTitles:nil];
+         [alertView show];*/
+    }];
+    
+    // 5
+    [operation start];
+}
 
 @end

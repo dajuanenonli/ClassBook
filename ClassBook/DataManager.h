@@ -20,4 +20,5 @@
 - (NSArray *)parsePlist;
 - (NSString *)dataFilePath;
 - (void)createPlist;
+- (void) getPeople;
 @end
