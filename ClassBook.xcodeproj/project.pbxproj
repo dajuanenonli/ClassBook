@@ -17,6 +17,7 @@
 		DE49BFF01B618D280025F0AA /* ClassBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE49BFEF1B618D280025F0AA /* ClassBookTests.m */; };
 		DE6B0A451B619A6000F16E83 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A441B619A6000F16E83 /* Person.m */; };
 		DE6B0A481B619D0900F16E83 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */; };
+		DE6B0A4B1B61AEFA00F16E83 /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B0A4A1B61AEFA00F16E83 /* PersonDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		DE6B0A441B619A6000F16E83 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		DE6B0A461B619D0900F16E83 /* PeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleTableViewController.h; sourceTree = "<group>"; };
 		DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleTableViewController.m; sourceTree = "<group>"; };
+		DE6B0A491B61AEFA00F16E83 /* PersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailViewController.h; sourceTree = "<group>"; };
+		DE6B0A4A1B61AEFA00F16E83 /* PersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 				DE49BFD31B618D280025F0AA /* Supporting Files */,
 				DE6B0A431B619A6000F16E83 /* Person.h */,
 				DE6B0A441B619A6000F16E83 /* Person.m */,
+				DE6B0A491B61AEFA00F16E83 /* PersonDetailViewController.h */,
+				DE6B0A4A1B61AEFA00F16E83 /* PersonDetailViewController.m */,
 				DE6B0A461B619D0900F16E83 /* PeopleTableViewController.h */,
 				DE6B0A471B619D0900F16E83 /* PeopleTableViewController.m */,
 			);
@@ -288,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE6B0A4B1B61AEFA00F16E83 /* PersonDetailViewController.m in Sources */,
 				DE6B0A481B619D0900F16E83 /* PeopleTableViewController.m in Sources */,
 				DE49BFDC1B618D280025F0AA /* ViewController.m in Sources */,
 				DE49BFD91B618D280025F0AA /* AppDelegate.m in Sources */,

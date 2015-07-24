@@ -8,6 +8,7 @@
 
 #import "PeopleTableViewController.h"
 #import "Person.h"
+#import "PersonDetailViewController.h"
 
 @interface PeopleTableViewController ()
 
@@ -25,6 +26,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //create observer
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadDetailpersonView:)
+                                                 name:@"Person Selected"
+                                               object:nil];
     
     self.people = [[NSMutableArray alloc] init];
     [self populatePeople];
@@ -66,6 +73,13 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    Person *selectedPerson = [self.people objectAtIndex:indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Person Selected"
+                                                        object:selectedPerson];
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -101,15 +115,55 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
+
+- (void) loadDetailpersonView: (NSNotification *) notification
+{
+    //PersonDetailViewController *personDVC = [[PersonDetailViewController alloc] init];
+    //personDVC.selectedperson = notification.object;
+    
+    /*
+    [UIView beginAnimations:@"View Flip" context:NULL];
+    [UIView setAnimationDuration:0.4];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+    [self  willMoveToParentViewController:nil];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+    
+    [self addChildViewController:personDVC];
+    [self.view insertSubview:personDVC.view atIndex:0];
+    [personDVC didMoveToParentViewController:self];
+     */
+    
+    PersonDetailViewController *controllerobj = [self.storyboard instantiateViewControllerWithIdentifier:@"PersonDetail"];
+    controllerobj.selectedperson = notification.object;
+    [self.navigationController pushViewController:controllerobj animated:YES];
+    [self presentViewController:controllerobj animated:YES completion:nil];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        PersonDetailViewController *controller = (PersonDetailViewController *)[[segue destinationViewController] topViewController];
+        //controller.languageString = self.languageString;
+        self.detailViewController = controller;
+        
+        Person *person = self.people[indexPath.row];
+        controller.selectedperson = person;
+        
+        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        controller.navigationItem.leftItemsSupplementBackButton = YES;
+    }
+
 }
-*/
+
 
 -(void) populatePeople
 {
@@ -124,7 +178,7 @@
     [self.people addObject:myPerson];
     
     Person *myPerson1 = [[Person alloc] init];
-    myPerson1.firstName = @"Maggie";
+    myPerson1.firstName = @"Margie";
     myPerson1.lastName = @"Simpson";
     myPerson1.address = @"123 Main St";
     myPerson1.city = @"Springfield";
@@ -141,7 +195,6 @@
     myPerson2.state = @"CA";
     myPerson2.zip = @"90064";
     myPerson2.mobile = @"818-111-1111";
-    [self.people addObject:myPerson2];
-}
+    [self.people addObject:myPerson2];}
 
 @end

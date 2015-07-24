@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PersonDetailViewController.h"
 
 @interface PeopleTableViewController : UITableViewController
-
+@property (strong, nonatomic) PersonDetailViewController *detailViewController;
 @end
